@@ -28,7 +28,7 @@ steps:
   displayName: 'Storing Build Artifact'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'GoA_Site'
+    ArtifactName: 'GoA'
 
 - task: AzureWebApp@1
   displayName: 'Deploying  Auth To Test Environment'
