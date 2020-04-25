@@ -17,13 +17,6 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Testing $(buildConfiguration)'
-  inputs:
-    command: test
-    projects: '**/*Tests1/1.csproj'
-    arguments: '--configuration $(buildConfiguration)' 
-
-- task: DotNetCoreCLI@2
   displayName: 'Publishing $(buildConfiguration)'
   inputs:
     command: publish
@@ -40,7 +33,7 @@ steps:
 - task: AzureWebApp@1
   displayName: 'Deploying  Auth To Test Environment'
   inputs:
-    azureSubscription: 'CloudDev'
+    azureSubscription: 'GoA'
     appName: 'GoA'
     apptype: webApp
     package: $(System.ArtifactSDirectory)/**/GoA_Site.zip
