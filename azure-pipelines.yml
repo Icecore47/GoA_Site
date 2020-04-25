@@ -36,6 +36,6 @@ steps:
     azureSubscription: 'GoA'
     appName: 'GoA'
     apptype: webApp
-    package: $(System.ArtifactSDirectory)/**/GoA_Site.zip
+    package: $(System.ArtifactSDirectory)/**/*.zip
 
 
