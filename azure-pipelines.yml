@@ -40,7 +40,7 @@ steps:
 - task: AzureWebApp@1
   displayName: 'Deploying  Auth To Test Environment'
   inputs:
-    azureSubscription: 'T7066356'
+    azureSubscription: 'CloudDev'
     appName: 'GoA'
     apptype: webApp
     package: $(System.ArtifactSDirectory)/**/GoA_Site.zip
