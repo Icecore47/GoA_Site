@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GoA_Site.Models.Damage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>DD Roaster</h1>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               In Game Name
+            </th>
+            <th>
+                Character Name
+            </th>
+            <th>
+              DPS
+            </th>
+            <th>
+               Damage Type
+            </th>
+            <th>
+               Class
+            </th>
+            <th>
+             Parse Link
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InGameName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CharacterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DPS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parse)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id = item.CharacterName}) |
+                @Html.ActionLink("Delete", "Delete", new {  id = item.CharacterName })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<GoA_Site.Models.GuildMember>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Member List</h1>
+
+<p>
+    <a asp-action="Create">Add New Member</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+             In Game Name
+            </th>
+            <th>
+              Events Joined
+            </th>
+            <th>
+              Last Active
+            </th>
+            <th>
+               Guild Rank
+            </th>
+            <th>
+                DD Rank
+            </th>
+            <th>
+                Healer Rank
+            </th>
+            <th>
+                Tank Rank
+            </th>
+            <th>
+                Discord Name
+            </th>
+            <th>
+              Date Joined
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InGameName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Events_Joined)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guild_Rank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DD_Rank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Healer_Rank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tank_Rank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discord_ID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinDate)
+            </td>
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.InGameName }) 
+                @Html.ActionLink("Edit", "Edit", new { id = item.InGameName }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.InGameName }) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
