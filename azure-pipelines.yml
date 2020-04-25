@@ -1,0 +1,48 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Testing $(buildConfiguration)'
+  inputs:
+    command: test
+    projects: '**/*Tests1/1.csproj'
+    arguments: '--configuration $(buildConfiguration)' 
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publishing $(buildConfiguration)'
+  inputs:
+    command: publish
+    publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) ' 
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Storing Build Artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'GoA_Site'
+
+- task: AzureWebApp@1
+  displayName: 'Deploying  Auth To Test Environment'
+  inputs:
+    azureSubscription: 'T7066356'
+    appName: 'GoA'
+    apptype: webApp
+    package: $(System.ArtifactSDirectory)/**/GoA_Site.zip
+
+
