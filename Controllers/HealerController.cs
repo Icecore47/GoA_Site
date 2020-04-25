@@ -8,35 +8,41 @@ using GoA_Site.Models;
 
 namespace GoA_Site.Controllers
 {
-    public class DamageController : Controller
+    public class HealerController : Controller
     {
         private readonly Fire FS = new Fire();
 
    
         public async Task<ActionResult> Index()
         {
-            IEnumerable<Damage> x = await FS.GetGuildDDs();
+
+            IEnumerable<Healer> x = await FS.GetGuildDDs();
+            
+            
             return View(x);
         }
 
-        // GET: Damage/Details/5
+        // GET: Healer/Details/5
         public async Task<ActionResult> Details(String id)
         {
-            var Guildie = await FS.GetGuildDamage(id);
+
+            var Guildie = await FS.GetGuildHealer(id);
             return View(Guildie);
+           
         }
 
-        // GET: Damage/Create
+        // GET: Healer/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Damage/Create
+        // POST: Healer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(IFormCollection collection)
         {
+
             string ign = Convert.ToString(collection["InGameName"]);
             string name = Convert.ToString(collection["CharacterName"]);
             string type = Convert.ToString(collection["Type"]);
@@ -45,8 +51,8 @@ namespace GoA_Site.Controllers
             string parse = Convert.ToString(collection["Parse"]);
             try
             {
-                var newDamage = new Damage(ign, name, dps, type, clas, parse);
-                await FS.AddNewDD(newDamage);
+                var newHealer = new Healer(ign, name, dps, type, clas, parse);
+                await FS.AddNewDD(newHealer);
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception e)
@@ -56,28 +62,25 @@ namespace GoA_Site.Controllers
             }
         }
 
-        // GET: Damage/Edit/5
+        // GET: Healer/Edit/5
         public async Task<ActionResult> Edit(String id)
         {
-            var Guildie = await FS.GetGuildDamage(id);
+            var Guildie = await FS.GetGuildHealer(id);
             return View(Guildie);
         }
 
-        // POST: Damage/Edit/5
+        // POST: Healer/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(string id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, IFormCollection collection)
         {
             string ign = Convert.ToString(collection["InGameName"]);
-            string name = Convert.ToString(collection["CharacterName"]);
-            string type = Convert.ToString(collection["Type"]);
+            string name = Convert.ToString(collection["CharacterName"]);  
             string clas = Convert.ToString(collection["Class"]);
-            Double dps = Convert.ToDouble(collection["DPS"]);
-            string parse = Convert.ToString(collection["Parse"]);
             try
             {
-                var newDamage = new Damage(ign, name, dps, type, clas, parse);
-                await FS.AddNewDD(newDamage);
+                var newHealer = new Healer(ign,name,clas);
+                await FS.AddNewDD(newHealer);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -86,28 +89,27 @@ namespace GoA_Site.Controllers
             }
         }
 
-        // GET: Damage/Delete/5
+        // GET: Healer/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
-            var Guildie = await FS.GetGuildDamage(id);
+            var Guildie = await FS.GetGuildHealer(id);
             return View(Guildie);
         }
 
-        // POST: Damage/Delete/5
+        // POST: Healer/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(String id, IFormCollection collection)
         {
             try
             {
-                await FS.DeleteGuildDamage(id);
+                await FS.DeleteGuildHealer(id);
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                var Guildie = await FS.GetGuildDamage(id);
-                return View(Guildie);
+                return View();
             }
         }
     }

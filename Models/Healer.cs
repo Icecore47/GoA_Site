@@ -6,8 +6,7 @@ namespace GoA_Site.Models
     {
         public String InGameName { get; set; }
         public String CharacterName { get; set; }
-        public String Gear { get; set; }
-        public String Trials { get; set; }
+        public String Class { get; set; }
 
     }
 }

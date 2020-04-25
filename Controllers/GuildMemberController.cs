@@ -95,20 +95,21 @@ namespace GoA_Site.Controllers
         }
 
         // GET: GuildMember/Delete/5
-        public ActionResult Delete(string id)
+        public async Task<ActionResult> DeleteAsync(string id)
         {
-           
-            return View();
+
+            var Guildie = await FS.GetGuildMember(id);
+            return View(Guildie);
         }
 
         // POST: GuildMember/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(String id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                await FS.DeleteGuildMember(id);
 
                 return RedirectToAction(nameof(Index));
             }
