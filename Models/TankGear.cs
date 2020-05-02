@@ -7,6 +7,13 @@ namespace GoA_Site.Models
 {
     public class TankGear
     {
+
+        public TankGear(string ign)
+        {
+            this.ign = ign;
+         
+        }
+        public string ign { get; set; }
         public Boolean Ebon { get; set; }
         public Boolean Alkosh { get; set; }
         public Boolean Yolna { get; set; }

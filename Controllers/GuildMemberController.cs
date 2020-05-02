@@ -95,7 +95,7 @@ namespace GoA_Site.Controllers
         }
 
         // GET: GuildMember/Delete/5
-        public async Task<ActionResult> DeleteAsync(string id)
+        public async Task<ActionResult> Delete(string id)
         {
 
             var Guildie = await FS.GetGuildMember(id);

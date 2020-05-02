@@ -25,6 +25,6 @@ namespace GoA_Site.Models
         public Boolean Master_Staff { get; set; }
         public Boolean Black_Rose_Staff { get; set; }
         public Boolean Asylum_Staff{ get; set; }
-
+        public string ign { get; internal set; }
     }
 }

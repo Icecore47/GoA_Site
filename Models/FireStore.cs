@@ -15,6 +15,7 @@ namespace GoA_Site.Models
         FirestoreDb FireDB;
         CollectionReference Guild_Members, Guild_Trials;
         CollectionReference Guild_DDs, Guild_Healers, Guild_Tanks;
+        CollectionReference Guild_Tank_Gear, Guild_Healer_Gear;
 
 
         public Fire()
@@ -190,6 +191,26 @@ namespace GoA_Site.Models
         {
             DocumentReference df = Guild_Tanks.Document(ID);
             await df.DeleteAsync();
+        }
+
+        // Tank Gear
+        public async Task AddNewTankGear(TankGear d)
+        {
+            await Guild_Tank_Gear.Document(d.ign).SetAsync(d);
+        }
+        public async Task UpdateTankGear(TankGear d)
+        {
+            await Guild_Tank_Gear.Document(d.ign).SetAsync(d);
+        }
+
+        // Healer Gear
+        public async Task AddNewHealerGear(HealerGear d)
+        {
+            await Guild_Healer_Gear.Document(d.ign).SetAsync(d);
+        }
+        public async Task UpdateHealerGear(HealerGear d)
+        {
+            await Guild_Healer_Gear.Document(d.ign).SetAsync(d);
         }
 
 

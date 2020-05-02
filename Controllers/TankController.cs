@@ -8,7 +8,7 @@ using GoA_Site.Models;
 
 namespace GoA_Site.Controllers
 {
-    public class HealerController : Controller
+    public class TankController : Controller
     {
         private readonly Fire FS = new Fire();
 
@@ -16,28 +16,28 @@ namespace GoA_Site.Controllers
         public async Task<ActionResult> Index()
         {
 
-            IEnumerable<Healer> x = await FS.GetGuildHealers();
+            IEnumerable<Tank> x = await FS.GetGuildTanks();
             
             
             return View(x);
         }
 
-        // GET: Healer/Details/5
+        // GET: Tank/Details/5
         public async Task<ActionResult> Details(String id)
         {
 
-            var Guildie = await FS.GetGuildHealer(id);
+            var Guildie = await FS.GetGuildTank(id);
             return View(Guildie);
            
         }
 
-        // GET: Healer/Create
+        // GET: Tank/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Healer/Create
+        // POST: Tank/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(IFormCollection collection)
@@ -45,14 +45,15 @@ namespace GoA_Site.Controllers
 
             string ign = Convert.ToString(collection["InGameName"]);
             string name = Convert.ToString(collection["CharacterName"]);
-            string type = Convert.ToString(collection["Type"]);
             string clas = Convert.ToString(collection["Class"]);
-            Double dps = Convert.ToDouble(collection["DPS"]);
-            string parse = Convert.ToString(collection["Parse"]);
+           
+        
             try
             {
-                var newHealer = new Healer();
-                await FS.AddNewHealer(newHealer);
+                var newTank = new Tank(ign,name,clas);
+                var TankGear = new TankGear(ign);
+                await FS.AddNewTank(newTank);
+                await FS.AddNewTankGear(TankGear);
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception e)
@@ -62,14 +63,14 @@ namespace GoA_Site.Controllers
             }
         }
 
-        // GET: Healer/Edit/5
+        // GET: Tank/Edit/5
         public async Task<ActionResult> Edit(String id)
         {
-            var Guildie = await FS.GetGuildHealer(id);
+            var Guildie = await FS.GetGuildTank(id);
             return View(Guildie);
         }
 
-        // POST: Healer/Edit/5
+        // POST: Tank/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, IFormCollection collection)
@@ -79,8 +80,8 @@ namespace GoA_Site.Controllers
             string clas = Convert.ToString(collection["Class"]);
             try
             {
-                var newHealer = new Healer();
-                await FS.AddNewHealer(newHealer);
+                var newTank = new Tank(ign,name,clas);
+                await FS.AddNewTank(newTank);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -89,21 +90,21 @@ namespace GoA_Site.Controllers
             }
         }
 
-        // GET: Healer/Delete/5
+        // GET: Tank/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
-            var Guildie = await FS.GetGuildHealer(id);
+            var Guildie = await FS.GetGuildTank(id);
             return View(Guildie);
         }
 
-        // POST: Healer/Delete/5
+        // POST: Tank/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(String id, IFormCollection collection)
         {
             try
             {
-                await FS.DeleteGuildHealer(id);
+                await FS.DeleteGuildTank(id);
 
                 return RedirectToAction(nameof(Index));
             }
