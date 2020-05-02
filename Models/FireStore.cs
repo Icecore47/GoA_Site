@@ -27,6 +27,8 @@ namespace GoA_Site.Models
             Guild_DDs = FireDB.Collection("Guild_DDs");
             Guild_Healers = FireDB.Collection("Guild_Healers");
             Guild_Tanks = FireDB.Collection("Guild_Tanks");
+            Guild_Healer_Gear = FireDB.Collection("Guild_Healer_Gear");
+            Guild_Tank_Gear = FireDB.Collection("Guild_Tank_Gear");
         }
 
 
