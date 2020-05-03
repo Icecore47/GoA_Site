@@ -111,13 +111,54 @@ namespace GoA_Site.Models
 
             return (TempObj);
         }
+
+        public async Task<List<Damage>> GetAllSpecificDDs(string ID)
+        {
+
+            Query q = Guild_DDs.WhereEqualTo("InGameName",ID);
+            QuerySnapshot qs = await q.GetSnapshotAsync();
+            List<Damage> ReDamageList = new List<Damage>();
+            Damage TempObj = null;
+
+            foreach (DocumentSnapshot ds in qs.Documents)
+            {
+                if (ds.Exists)
+                {
+                    TempObj = ds.ConvertTo<Damage>();
+                    ReDamageList.Add(TempObj);
+                }
+            }
+
+            return (ReDamageList);
+        }
         public async Task DeleteGuildDamage(string ID)
         {
             DocumentReference df = Guild_DDs.Document(ID);
             await df.DeleteAsync();
         }
 
+
+
         // Healer Fuctions
+        public async Task<List<Healer>> GetAllSpecificHealers(string ID)
+        {
+
+            Query q = Guild_Healers.WhereEqualTo("InGameName", ID);
+            QuerySnapshot qs = await q.GetSnapshotAsync();
+            List<Healer> ReDamageList = new List<Healer>();
+            Healer TempObj = null;
+
+            foreach (DocumentSnapshot ds in qs.Documents)
+            {
+                if (ds.Exists)
+                {
+                    TempObj = ds.ConvertTo<Healer>();
+                    ReDamageList.Add(TempObj);
+                }
+            }
+
+            return (ReDamageList);
+        }
         public async Task AddNewHealer(Healer d)
         {
             await Guild_Healers.Document(d.CharacterName).SetAsync(d);
@@ -157,6 +198,26 @@ namespace GoA_Site.Models
         }
 
         // Tank Fuctions
+
+        public async Task<List<Tank>> GetAllSpecificTanks(string ID)
+        {
+
+            Query q = Guild_Healers.WhereEqualTo("InGameName", ID);
+            QuerySnapshot qs = await q.GetSnapshotAsync();
+            List<Tank> ReDamageList = new List<Tank>();
+            Tank TempObj = null;
+
+            foreach (DocumentSnapshot ds in qs.Documents)
+            {
+                if (ds.Exists)
+                {
+                    TempObj = ds.ConvertTo<Tank>();
+                    ReDamageList.Add(TempObj);
+                }
+            }
+
+            return (ReDamageList);
+        }
         public async Task AddNewTank(Tank d)
         {
             await Guild_Tanks.Document(d.CharacterName).SetAsync(d);
@@ -205,6 +266,32 @@ namespace GoA_Site.Models
             await Guild_Tank_Gear.Document(d.ign).SetAsync(d);
         }
 
+        public async Task<List<TankGear>> GetAllTankGear()
+        {
+            Query q = Guild_Tank_Gear;
+            QuerySnapshot qs = await q.GetSnapshotAsync();
+            List<TankGear> TG = new List<TankGear>();
+            foreach (DocumentSnapshot ds in qs.Documents)
+            {
+                var TempObj = ds.ConvertTo<TankGear>();
+                TG.Add(TempObj);
+            }
+            return (TG);
+        }
+        public async Task<TankGear> GetTankGear(string ID)
+        {
+            DocumentReference df = Guild_Tank_Gear.Document(ID);
+            DocumentSnapshot ds = await df.GetSnapshotAsync();
+            TankGear TempObj = null;
+            if (ds.Exists)
+            {
+                TempObj = ds.ConvertTo<TankGear>();
+            }
+
+            return (TempObj);
+        }
+
+
         // Healer Gear
         public async Task AddNewHealerGear(HealerGear d)
         {
@@ -213,6 +300,30 @@ namespace GoA_Site.Models
         public async Task UpdateHealerGear(HealerGear d)
         {
             await Guild_Healer_Gear.Document(d.ign).SetAsync(d);
+        }
+        public async Task<List<HealerGear>> GetAllHealerGear()
+        {
+            Query q = Guild_Healer_Gear;
+            QuerySnapshot qs = await q.GetSnapshotAsync();
+            List<HealerGear> HG = new List<HealerGear>();
+            foreach (DocumentSnapshot ds in qs.Documents)
+            {
+                var TempObj = ds.ConvertTo<HealerGear>();
+                HG.Add(TempObj);
+            }
+            return (HG);
+        }
+        public async Task<HealerGear> GetHealerGear(string ID)
+        {
+            DocumentReference df = Guild_Healer_Gear.Document(ID);
+            DocumentSnapshot ds = await df.GetSnapshotAsync();
+            HealerGear TempObj = null;
+            if (ds.Exists)
+            {
+                TempObj = ds.ConvertTo<HealerGear>();
+            }
+
+            return (TempObj);
         }
 
 

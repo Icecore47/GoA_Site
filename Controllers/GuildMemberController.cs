@@ -25,6 +25,17 @@ namespace GoA_Site.Controllers
         public async Task<ActionResult> Details(string id)
         {
             var Guildie = await FS.GetGuildMember(id);
+            var DDs = await FS.GetAllSpecificDDs(id);
+            var Healers = await FS.GetAllSpecificHealers(id);
+            var Tanks = await FS.GetAllSpecificTanks(id);
+            var Tanks_Gear = await FS.GetTankGear(id);
+            //     var Healer_Gear = await FS.GetGuildMember(id);
+            //    var DD_Trials = await FS.GetGuildMember(id);
+            //    var Healer_Trials = await FS.GetGuildMember(id);
+            //   var Tank_Trials = await FS.GetGuildMember(id);
+
+            var SuperGuildie = new GuildMember(Guildie,DDs,Healers,Tanks,Tanks_Gear);
+
             return View(Guildie);
         }
 

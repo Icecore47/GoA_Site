@@ -1,0 +1,127 @@
+﻿<p>
+    @model IEnumerable<GoA_Site.Models.TankGear>
+    @{ ViewData["Title"] = "Index"; }
+</p>
+<h1>
+    Tank Gear
+</h1>
+<p>
+    <a>
+        Create New
+    </a>
+</p>
+<p>
+    @foreach (var item in Model) { }
+</p>
+<div class="rTable">
+    <div class="rTableHeading">
+        <div class="rTableRow">
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.ign)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Ebon)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Alkosh)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Yolna)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Akaviri)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Torug)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Powerful_Assault)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Morag_Tong)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Worm)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Hircine)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Dragons_Defilement)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Lord_Warden)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Stonekeeper)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Earthgore)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Thurvokun)
+            </div>
+            <div class="rTableHead">
+                @Html.DisplayNameFor(model => model.Symphony)
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="rTableBody">
+            <div class="rTableRow">
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.ign)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Ebon)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Alkosh)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Yolna)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Akaviri)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Torug)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Powerful_Assault)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Morag_Tong)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Worm)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Hircine)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Dragons_Defilement)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Lord_Warden)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Stonekeeper)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Earthgore)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Thurvokun)
+                </div>
+                <div class="rTableCell">
+                    @Html.DisplayFor(modelItem => item.Symphony)
+                </div>
+                <div class="rTableCell">
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) | @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </div>
+            </div>
+        </div>
+    }
+    </div>

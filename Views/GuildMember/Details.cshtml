@@ -10,67 +10,178 @@
     <h4>GuildMember</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.InGameName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.InGameName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Events_Joined)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Events_Joined)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LastActive)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LastActive)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Guild_Rank)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Guild_Rank)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DD_Rank)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DD_Rank)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Healer_Rank)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Healer_Rank)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Tank_Rank)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Tank_Rank)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Discord_ID)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Discord_ID)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Discord_Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Discord_Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.JoinDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.JoinDate)
         </dd>
     </dl>
+
+
+
+    <h1>DD Roaster</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Character Name
+                </th>
+                <th>
+                    DPS
+                </th>
+                <th>
+                    Damage Type
+                </th>
+                <th>
+                    Class
+                </th>
+                <th>
+                    Parse Link
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DDs)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CharacterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DPS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Parse)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <h1>Healers</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Character Name
+                </th>
+                <th>
+                    Class
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Healers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CharacterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h1>Tanks</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Character
+                </th>
+                <th>
+                    Class
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Tank)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CharacterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

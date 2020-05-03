@@ -12,28 +12,35 @@ namespace GoA_Site.Models
     [FirestoreData]
     public class GuildMember
     {
+        private string ign;
+        private string rank;
+        private DateTime date;
 
         public GuildMember()
         {}
-        public GuildMember(string inGameName, string guild_Rank,  string discord_ID, string discord_Name, DateTime joinDate)
-        {
-            InGameName = inGameName;
 
-            Events_Joined = 0;
-            LastActive = DateTime.Now; 
-            Guild_Rank = guild_Rank;
-            DD_Rank = "None";
-            Healer_Rank = "None";
-            Tank_Rank = "None";
-            Discord_ID = discord_ID;
-            Discord_Name = discord_Name;
-            JoinDate = joinDate;
+
+        public GuildMember(GuildMember g ,List<Damage> d, List<Healer>h, List<Tank> t, TankGear tg)
+        {
+            InGameName = g.InGameName;
+            Events_Joined = g.Events_Joined;
+            LastActive = g.LastActive;
+            Guild_Rank = g.Guild_Rank;
+            DD_Rank = g.DD_Rank;
+            Healer_Rank = g.Healer_Rank;
+            Tank_Rank = g.Tank_Rank;
+            Discord_ID = g.Discord_ID;
+            Discord_Name = g.Discord_Name;
+            JoinDate = g.JoinDate;
+            this.TankGears = tg;
+            this.Tank = t;
+            this.Healers = h;
+            this.DDs = d;
         }
 
         public GuildMember(GuildMemberDTO g)
         {
             InGameName = g.InGameName;
-  
             Events_Joined = g.Events_Joined;
             LastActive = new DateTime(g.LastActive);
             Guild_Rank = g.Guild_Rank;
@@ -45,6 +52,19 @@ namespace GoA_Site.Models
             JoinDate = new DateTime(g.JoinDate);
         }
 
+        public GuildMember(string ign, string rank, string discord_id, string discord_name, DateTime date)
+        {
+            this.ign = ign;
+            this.rank = rank;
+            Discord_ID = discord_id;
+            Discord_Name = discord_name;
+            this.date = date;
+        }
+
+        public TankGear TankGears { get; set; }
+        public List<Healer> Healers { get; set; }
+        public List<Tank> Tank { get; set; }
+        public List<Damage> DDs { get; set; }
         [FirestoreProperty]
         public String InGameName { get;  set; }
         [FirestoreProperty]
